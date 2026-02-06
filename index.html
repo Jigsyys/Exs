@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExchangeStudent - Élargis ton monde</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    
+    <!-- Google Sign-In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <meta name="google-signin-client_id" content="VOTRE_CLIENT_ID_GOOGLE.apps.googleusercontent.com">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 20h16M20 12v16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="20" cy="20" r="6" fill="currentColor" opacity="0.2"/>
+                </svg>
+                <span class="logo-text">ExchangeStudent</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#accueil" class="nav-link">Accueil</a>
+                <a href="#comment-ca-marche" class="nav-link">Comment ça marche</a>
+                <a href="#annonces" class="nav-link">Annonces</a>
+                <a href="#" class="nav-link" onclick="showLogin(event)">Connexion</a>
+                <button class="btn-primary" onclick="showRegister(event)">S'inscrire</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-line">Élargis</span>
+                    <span class="title-line accent">ton monde</span>
+                </h1>
+                <p class="hero-subtitle">Échange ton logement avec des étudiants partout en France. Simple, gratuit, et basé sur la confiance.</p>
+                <div class="hero-cta">
+                    <button class="btn-large btn-primary" onclick="scrollToSearch()">Trouver un logement</button>
+                    <button class="btn-large btn-secondary" onclick="scrollTo('#comment-ca-marche')">En savoir plus</button>
+                </div>
+            </div>
+            
+            <!-- Search Widget -->
+            <div class="search-widget">
+                <h3>Trouve ton prochain chez-toi</h3>
+                <form class="search-form" onsubmit="searchAccommodations(event)">
+                    <div class="search-input-group">
+                        <label>Destination</label>
+                        <input type="text" id="search-location" placeholder="Paris, Lyon, Marseille..." required>
+                    </div>
+                    <div class="search-row">
+                        <div class="search-input-group">
+                            <label>Arrivée</label>
+                            <input type="date" id="search-start" required>
+                        </div>
+                        <div class="search-input-group">
+                            <label>Départ</label>
+                            <input type="date" id="search-end" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-search">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12.5 12.5L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Rechercher
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">2,450+</div>
+                    <div class="stat-label">Étudiants inscrits</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1,200+</div>
+                    <div class="stat-label">Échanges réalisés</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfaction</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">45</div>
+                    <div class="stat-label">Villes en France</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="how-it-works" id="comment-ca-marche">
+        <div class="container">
+            <h2 class="section-title">Comment ça marche ?</h2>
+            <p class="section-subtitle">Un système simple basé sur les points et la confiance</p>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <circle cx="30" cy="30" r="25" fill="currentColor" opacity="0.1"/>
+                            <path d="M30 15v30M15 30h30" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>1. Inscris-toi gratuitement</h3>
+                    <p>Crée ton profil et reçois tes premiers points de bienvenue pour commencer.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <rect x="10" y="15" width="40" height="30" rx="4" fill="currentColor" opacity="0.1"/>
+                            <path d="M15 25h30M15 30h20M15 35h25" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>2. Propose ton logement</h3>
+                    <p>Crée une annonce avec photos et description. Gagne des points pour chaque nuit d'accueil.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <circle cx="30" cy="30" r="25" fill="currentColor" opacity="0.1"/>
+                            <path d="M20 30l8 8 12-16" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>3. Réserve avec tes points</h3>
+                    <p>Utilise tes points pour séjourner chez d'autres étudiants partout en France.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Listings -->
+    <section class="listings-section" id="annonces">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Annonces populaires</h2>
+                <button class="btn-secondary" onclick="showAllListings()">Voir toutes les annonces</button>
+            </div>
+            
+            <div class="listings-grid" id="listings-container">
+                <!-- Listings will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Prêt à commencer ton aventure ?</h2>
+                <p>Rejoins notre communauté d'étudiants et découvre une nouvelle façon de voyager</p>
+                <button class="btn-large btn-primary" onclick="showRegister(event)">Créer mon compte</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <svg width="35" height="35" viewBox="0 0 40 40" fill="none">
+                            <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 20h16M20 12v16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="20" cy="20" r="6" fill="currentColor" opacity="0.2"/>
+                        </svg>
+                        <span>ExchangeStudent</span>
+                    </div>
+                    <p>Le monde entier à ta portée</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Plateforme</h4>
+                    <a href="#annonces">Annonces</a>
+                    <a href="#" onclick="showLogin(event)">Connexion</a>
+                    <a href="#" onclick="showRegister(event)">Inscription</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Aide</h4>
+                    <a href="#">FAQ</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Guide d'utilisation</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Légal</h4>
+                    <a href="#">Conditions d'utilisation</a>
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">Mentions légales</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ExchangeStudent. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('login-modal')">&times;</button>
+            <h2>Connexion</h2>
+            <form class="auth-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="login-email" required placeholder="ton@email.fr">
+                </div>
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input type="password" id="login-password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn-primary btn-full">Se connecter</button>
+                
+                <div class="auth-divider">
+                    <span>ou</span>
+                </div>
+                
+                <button type="button" class="btn-google" onclick="handleGoogleLogin()">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M19.6 10.227c0-.709-.064-1.39-.182-2.045H10v3.868h5.382a4.6 4.6 0 01-1.996 3.018v2.51h3.232c1.891-1.742 2.982-4.305 2.982-7.35z" fill="#4285F4"/>
+                        <path d="M10 20c2.7 0 4.964-.895 6.618-2.423l-3.232-2.509c-.895.6-2.04.955-3.386.955-2.605 0-4.81-1.76-5.595-4.123H1.064v2.59A9.996 9.996 0 0010 20z" fill="#34A853"/>
+                        <path d="M4.405 11.9c-.2-.6-.314-1.24-.314-1.9 0-.66.114-1.3.314-1.9V5.51H1.064A9.996 9.996 0 000 10c0 1.614.386 3.14 1.064 4.49l3.34-2.59z" fill="#FBBC05"/>
+                        <path d="M10 3.977c1.468 0 2.786.505 3.823 1.496l2.868-2.868C14.959.99 12.695 0 10 0 6.09 0 2.71 2.24 1.064 5.51l3.34 2.59C5.19 5.736 7.395 3.977 10 3.977z" fill="#EA4335"/>
+                    </svg>
+                    Continuer avec Google
+                </button>
+                
+                <p class="auth-switch">Pas encore de compte ? <a href="#" onclick="switchToRegister(event)">S'inscrire</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('register-modal')">&times;</button>
+            <h2>Créer un compte</h2>
+            <form class="auth-form" onsubmit="handleRegister(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Prénom</label>
+                        <input type="text" id="register-firstname" required placeholder="Prénom">
+                    </div>
+                    <div class="form-group">
+                        <label>Nom</label>
+                        <input type="text" id="register-lastname" required placeholder="Nom">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="register-email" required placeholder="ton@email.fr">
+                </div>
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input type="password" id="register-password" required placeholder="••••••••" minlength="8">
+                </div>
+                <div class="form-group">
+                    <label>Confirmer le mot de passe</label>
+                    <input type="password" id="register-confirm" required placeholder="••••••••">
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="register-terms" required>
+                    <label for="register-terms">J'accepte les conditions d'utilisation</label>
+                </div>
+                <button type="submit" class="btn-primary btn-full">Créer mon compte</button>
+                
+                <div class="auth-divider">
+                    <span>ou</span>
+                </div>
+                
+                <button type="button" class="btn-google" onclick="handleGoogleLogin()">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M19.6 10.227c0-.709-.064-1.39-.182-2.045H10v3.868h5.382a4.6 4.6 0 01-1.996 3.018v2.51h3.232c1.891-1.742 2.982-4.305 2.982-7.35z" fill="#4285F4"/>
+                        <path d="M10 20c2.7 0 4.964-.895 6.618-2.423l-3.232-2.509c-.895.6-2.04.955-3.386.955-2.605 0-4.81-1.76-5.595-4.123H1.064v2.59A9.996 9.996 0 0010 20z" fill="#34A853"/>
+                        <path d="M4.405 11.9c-.2-.6-.314-1.24-.314-1.9 0-.66.114-1.3.314-1.9V5.51H1.064A9.996 9.996 0 000 10c0 1.614.386 3.14 1.064 4.49l3.34-2.59z" fill="#FBBC05"/>
+                        <path d="M10 3.977c1.468 0 2.786.505 3.823 1.496l2.868-2.868C14.959.99 12.695 0 10 0 6.09 0 2.71 2.24 1.064 5.51l3.34 2.59C5.19 5.736 7.395 3.977 10 3.977z" fill="#EA4335"/>
+                    </svg>
+                    Continuer avec Google
+                </button>
+                
+                <p class="auth-switch">Déjà un compte ? <a href="#" onclick="switchToLogin(event)">Se connecter</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard (Hidden by default) -->
+    <div class="dashboard" id="dashboard" style="display: none;">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <svg width="35" height="35" viewBox="0 0 40 40" fill="none">
+                    <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 20h16M20 12v16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="20" cy="20" r="6" fill="currentColor" opacity="0.2"/>
+                </svg>
+                <span>ExchangeStudent</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link active" onclick="showDashboardSection('overview')">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="2" y="2" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                        <rect x="11" y="2" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                        <rect x="2" y="11" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                        <rect x="11" y="11" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                    Vue d'ensemble
+                </a>
+                <a href="#" class="sidebar-link" onclick="showDashboardSection('my-listings')">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    Mes annonces
+                </a>
+                <a href="#" class="sidebar-link" onclick="showDashboardSection('reservations')">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="3" y="4" width="14" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M3 8h14M7 2v4M13 2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    Réservations
+                </a>
+                <a href="#" class="sidebar-link" onclick="showDashboardSection('create-listing')">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M10 6v8M6 10h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    Créer une annonce
+                </a>
+                <a href="#" class="sidebar-link" onclick="showDashboardSection('profile')">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M4 18c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    Mon profil
+                </a>
+            </nav>
+            <button class="btn-logout" onclick="handleLogout()">Déconnexion</button>
+        </aside>
+        
+        <main class="dashboard-main">
+            <!-- Overview Section -->
+            <section id="section-overview" class="dashboard-section">
+                <div class="dashboard-header">
+                    <h1>Bonjour, <span id="user-name">Utilisateur</span> 👋</h1>
+                    <div class="points-badge">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.2"/>
+                            <path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span id="user-points">100</span> points
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Mes statistiques</h3>
+                        <div class="stats-list">
+                            <div class="stat-item">
+                                <span>Échanges réalisés</span>
+                                <strong id="stat-exchanges">0</strong>
+                            </div>
+                            <div class="stat-item">
+                                <span>Annonces actives</span>
+                                <strong id="stat-listings">0</strong>
+                            </div>
+                            <div class="stat-item">
+                                <span>Avis reçus</span>
+                                <strong id="stat-reviews">0</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Mes points</h3>
+                        <div class="points-detail">
+                            <div class="points-total">
+                                <span class="points-number" id="points-detail">100</span>
+                                <span class="points-label">points disponibles</span>
+                            </div>
+                            <div class="points-info">
+                                <p>💡 Gagne des points en accueillant d'autres étudiants</p>
+                                <p>🏠 1 nuit d'accueil = 1 point</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card full-width">
+                        <div class="card-header-with-action">
+                            <h3>Historique des points</h3>
+                            <button class="btn-link" onclick="showAllPointsHistory()">Voir tout</button>
+                        </div>
+                        <div id="points-history-container">
+                            <p class="empty-state">Aucune transaction pour le moment</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card full-width">
+                        <h3>Réservations à venir</h3>
+                        <div id="upcoming-reservations">
+                            <p class="empty-state">Aucune réservation à venir</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- My Listings Section -->
+            <section id="section-my-listings" class="dashboard-section" style="display: none;">
+                <div class="dashboard-header">
+                    <h1>Mes annonces</h1>
+                    <button class="btn-primary" onclick="showDashboardSection('create-listing')">Créer une annonce</button>
+                </div>
+                <div id="user-listings-container">
+                    <p class="empty-state">Tu n'as pas encore créé d'annonce</p>
+                </div>
+            </section>
+            
+            <!-- Reservations Section -->
+            <section id="section-reservations" class="dashboard-section" style="display: none;">
+                <div class="dashboard-header">
+                    <h1>Mes réservations</h1>
+                </div>
+                <div class="reservations-tabs">
+                    <button class="tab-btn active" onclick="showReservationsTab('upcoming')">À venir</button>
+                    <button class="tab-btn" onclick="showReservationsTab('past')">Passées</button>
+                </div>
+                <div id="reservations-container">
+                    <p class="empty-state">Aucune réservation</p>
+                </div>
+            </section>
+            
+            <!-- Create Listing Section -->
+            <section id="section-create-listing" class="dashboard-section" style="display: none;">
+                <div class="dashboard-header">
+                    <h1>Créer une annonce</h1>
+                </div>
+                <form class="listing-form" onsubmit="handleCreateListing(event)">
+                    <div class="form-group">
+                        <label>Titre de l'annonce *</label>
+                        <input type="text" id="listing-title" required placeholder="Ex: Chambre lumineuse en centre-ville">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Ville *</label>
+                            <input type="text" id="listing-city" required placeholder="Paris">
+                        </div>
+                        <div class="form-group">
+                            <label>Code postal *</label>
+                            <input type="text" id="listing-postal" required placeholder="75001">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Description *</label>
+                        <textarea id="listing-description" required rows="6" placeholder="Décris ton logement, le quartier, les commodités..."></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Type de logement *</label>
+                            <select id="listing-type" required>
+                                <option value="">Sélectionne...</option>
+                                <option value="room">Chambre privée</option>
+                                <option value="apartment">Appartement entier</option>
+                                <option value="studio">Studio</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Capacité *</label>
+                            <select id="listing-capacity" required>
+                                <option value="1">1 personne</option>
+                                <option value="2">2 personnes</option>
+                                <option value="3">3 personnes</option>
+                                <option value="4">4 personnes</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Équipements</label>
+                        <div class="amenities-grid">
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="wifi">
+                                <span>WiFi</span>
+                            </label>
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="kitchen">
+                                <span>Cuisine</span>
+                            </label>
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="washing">
+                                <span>Machine à laver</span>
+                            </label>
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="parking">
+                                <span>Parking</span>
+                            </label>
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="desk">
+                                <span>Bureau</span>
+                            </label>
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="balcony">
+                                <span>Balcon</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Photos (optionnel)</label>
+                        <div class="file-upload">
+                            <input type="file" id="listing-photos" accept="image/*" multiple>
+                            <p>Ajoute des photos de ton logement</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="showDashboardSection('my-listings')">Annuler</button>
+                        <button type="submit" class="btn-primary">Publier l'annonce</button>
+                    </div>
+                </form>
+            </section>
+            
+            <!-- Profile Section -->
+            <section id="section-profile" class="dashboard-section" style="display: none;">
+                <div class="dashboard-header">
+                    <h1>Mon profil</h1>
+                </div>
+                <form class="profile-form" onsubmit="handleUpdateProfile(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Prénom</label>
+                            <input type="text" id="profile-firstname" value="Prénom">
+                        </div>
+                        <div class="form-group">
+                            <label>Nom</label>
+                            <input type="text" id="profile-lastname" value="Nom">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="profile-email" value="email@example.com" disabled>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Bio</label>
+                        <textarea id="profile-bio" rows="4" placeholder="Parle de toi, de tes études, de tes passions..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Université</label>
+                        <input type="text" id="profile-university" placeholder="Ton université">
+                    </div>
+                    
+                    <h3 style="margin-top: 2rem;">Changer le mot de passe</h3>
+                    
+                    <div class="form-group">
+                        <label>Ancien mot de passe</label>
+                        <input type="password" id="profile-old-password">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Nouveau mot de passe</label>
+                        <input type="password" id="profile-new-password">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Enregistrer les modifications</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
