@@ -1,0 +1,6 @@
+@echo off
+echo Lancement du serveur ExchangeStudent...
+cd /d "%~dp0"
+echo Demarrage du serveur (patientez 5 secondes)...
+start /min cmd /c "timeout /t 5 /nobreak && start http://localhost:3000"
+npm run dev
